@@ -2,15 +2,16 @@
 DROP TABLE IF EXISTS customers;
 
 --テーブルがなければ作る
-CREATE TABLE IF NOT EXISTS customers (
-    name TEXT,
-    age INTEGER
+CREATE TABLE IF NOT EXISTS posts (
+    id SERIAL PRIMARY KEY NOT NULL,
+    title VARCHAR(20),
+    detail TEXT
+--    img_url TEXT
+
 );
 
---テストデータを挿入
-INSERT INTO
-    customers
-VALUES
-    ('Bob', 15),
-    ('Tom', 57),
-    ('Ken', 76)
+----テストデータを挿入
+--INSERT INTO
+--    posts
+--VALUES
+--    (1, '確認テスト', '中尊寺 金色堂')

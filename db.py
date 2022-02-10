@@ -1,6 +1,6 @@
 import os
 
-import psycopg2 as psycopg2
+import psycopg2
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -18,8 +18,8 @@ def cursor_execute(sql):
         with conn.cursor() as cur:
             cur.execute(sql)
             if sql.split(" ")[0] == "SELECT":
-                customers = cur.fetchall()
-                return customers
+                posts = cur.fetchall()
+                return posts
 
 
 def init_db():
@@ -28,13 +28,22 @@ def init_db():
         cursor_execute(f.read())
 
 
-def get_all_customers():
-    sql = "SELECT * FROM customers;"
-    customers = cursor_execute(sql)
-    return customers
+def get_all_posts():
+    sql = "SELECT * FROM posts;"
+    posts = cursor_execute(sql)
+    return posts
+
+
+def add_post(title, detail):
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            # postsテーブルに挿入するSQL 値は後から
+            sql = "INSERT INTO posts VALUES (%(title)s, %(detail)s);"
+            params = {'title': title, 'detail': detail}
+            cur.execute(sql, params)
 
 
 if __name__ == '__main__':
     init_db()
 
-    print(init_db.__doc__)
+    # print(init_db.__doc__)
