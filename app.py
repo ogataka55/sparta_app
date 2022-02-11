@@ -23,7 +23,10 @@ def add_post():
     title = request.form["title"]
     detail = request.form["detail"]
 
-    db.add_post(title, detail)
+    if not title or not detail:
+        return redirect(url_for("index"))
+    else:
+        db.add_post(title, detail)
 
     return redirect(url_for("index"))
 

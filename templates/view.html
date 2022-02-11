@@ -45,7 +45,6 @@
 <section class="py-5">
     <div class="container mt-5">
         <div class="row justify-content-center">
-            {{ id }}
             <div class="w-50 mb-5">
                 <div class="card">
                     <!-- image-->
@@ -89,6 +88,9 @@
         <div class="form-group pb-3 row">
             <div class="offset-2 col-10">
                 <button type="submit" class="btn btn-primary">登録</button>
+                <button type="submit" class="btn btn-primary"><a href="{{ url_for('index') }}"
+                                                                 style="color:white">戻る</a></button>
+                </a>
             </div>
         </div>
     </div>

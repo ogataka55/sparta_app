@@ -38,7 +38,7 @@ def add_post(title, detail):
     with get_connection() as conn:
         with conn.cursor() as cur:
             # postsテーブルに挿入するSQL 値は後から
-            sql = "INSERT INTO posts VALUES (%(title)s, %(detail)s);"
+            sql = "INSERT INTO posts(title,detail) VALUES (%(title)s, %(detail)s);"
             params = {'title': title, 'detail': detail}
             cur.execute(sql, params)
 
