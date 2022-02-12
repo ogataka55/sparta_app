@@ -51,6 +51,32 @@ def view(id):
     return render_template("view.html", post=post)
 
 
+@app.route("/view/<int:id>/view_edit")
+def view_edit(id):
+    post = db.get_one_post(id)
+    return render_template("edit.html", post=post)
+
+
+@app.route("/view/<int:id>/edit", methods=["POST"])
+def edit(id):
+    n_title = request.form["n_title"]
+    n_detail = request.form["n_detail"]
+    n_img = request.files['n_image']
+    n_link = request.form['n_link']
+
+    if n_img and allowed_file(n_img.filename):
+        filename = n_img.filename
+        # ファイルの保存
+        n_img.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+    if not n_title or not n_detail or not n_img:
+        return redirect(url_for("view", id=id))
+    else:
+        db.edit_post(id, n_title, n_detail, n_img, n_link)
+
+    return redirect(url_for("view", id=id))
+
+
 @app.route("/view/<int:id>/delete", methods=['POST'])
 def delete(id):
     db.delete(id)

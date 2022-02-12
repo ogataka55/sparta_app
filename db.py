@@ -53,6 +53,16 @@ def add_post(title, detail, img, link):
             cur.execute(sql, params)
 
 
+def edit_post(id, n_title, n_detail, n_img, n_link):
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            # postsテーブルを編集するSQL 値は後から
+            sql = "UPDATE posts SET title=%(n_title)s, detail=%(n_detail)s, image=%(n_img)s, link=%(n_link)s WHERE " \
+                  "id=%(id)s "
+            params = {'id': id, 'n_title': n_title, 'n_detail': n_detail, 'n_img': n_img, 'n_link': n_link}
+            cur.execute(sql, params)
+
+
 def delete(id):
     with get_connection() as conn:
         with conn.cursor() as cur:

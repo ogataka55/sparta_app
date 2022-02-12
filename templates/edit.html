@@ -54,49 +54,60 @@
         </div>
     </div>
 </section>
-<div>
+
+<form action="{{ url_for('edit',id=post[0]) }}" method="post" enctype=multipart/form-data>
     <div class="w-50 container">
         <!-- 1行 -->
         <div class="form-group row">
-            <label class="col-2 col-form-label">タイトル</label>
-            <div class="col-9 offset-1" style="padding-top: 7px; padding-bottom: 7px">
-                {{ post[1] }}
+            <label class="col-2 col-form-label">
+                <nobr>タイトル&emsp;※必須</nobr>
+            </label>
+            <div class="col-9 offset-1">
+                <input type="text" class="form-control" name="n_title" value="{{ post[1] }}">
             </div>
         </div>
 
         <!-- 1行 -->
         <div class="form-group row">
-            <label class="col-2 col-form-label">詳細</label>
-            <div class="col-9 offset-1" style="padding-top: 7px; padding-bottom: 7px">
-                {{ post[2] }}
+            <label class="col-2 col-form-label">
+                <nobr>詳細&emsp;※必須</nobr>
+            </label>
+            <div class="col-9 offset-1">
+                <input type="text" class="form-control" name="n_detail" value="{{ post[2] }}">
             </div>
         </div>
 
         <div class="form-group row">
-            <label class="col-2 col-form-label">URLリンク</label>
-            <div class="col-9 offset-1" style="padding-top: 7px; padding-bottom: 7px">
-                <a href="{{ post[4] }}" target="_blank">{{ post[4] }}</a>
+            <label class="col-2 col-form-label">
+                <nobr>画像&emsp;※必須</nobr>
+            </label>
+            <div class="col-9 offset-1">
+                <input type="file" name="n_image" accept="image/png, image/jeg, image/jpeg" value="{{ post[3] }}"
+                       style="padding-top: 7px; padding-bottom: 7px">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">
+                <nobr>URLリンク&emsp;※任意</nobr>
+            </label>
+            <div class="col-9 offset-1">
+                <input type="text" class="form-control" name="n_link" value="{{ post[4] }}">
             </div>
         </div>
 
         <!-- 1行 -->
         <div class="form-group py-3 row">
             <div class="offset-2 col-10">
-                <button type="submit" class="btn btn-primary"><a href="{{ url_for('index') }}"
+                <button type="submit" class="btn btn-primary"><a href="{{ url_for('view',id=post[0]) }}"
                                                                  style="color:white">戻る</a></button>
-                <!--                <form action="{{ url_for('edit', id=post[0]) }}" method="post" id="edit"-->
+                <!--                <form action="{{ url_for('edit', id=post[0]) }}" method="post" id="edit" enctype=multipart/form-data-->
                 <!--                      style="display:inline"></form>-->
-                <!--                <input type="submit" form="edit"  class="btn btn-success" value="編集" style="color:white">-->
-                <button type="submit" class="btn btn-success"><a href="{{ url_for('view_edit', id=post[0]) }}"
-                                                                 style="color:white">編集</a></button>
-                <form action="{{ url_for('delete', id=post[0]) }}" method="post" id="delete"
-                      style="display:inline"></form>
-                <input type="submit" form="delete" class="btn btn-danger offset-1" value="削除"
-                       style="color:white">
+                <input type="submit" class="btn btn-success" value="登録" style="color:white">
             </div>
         </div>
     </div>
-</div>
+</form>
 <!-- Footer-->
 <footer class="py-5 bg-primary">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; </p></div>
