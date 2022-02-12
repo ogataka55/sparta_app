@@ -30,6 +30,7 @@ def add_post():
     title = request.form["title"]
     detail = request.form["detail"]
     img = request.files['image']
+    link = request.form['link']
 
     if img and allowed_file(img.filename):
         filename = img.filename
@@ -39,7 +40,7 @@ def add_post():
     if not title or not detail or not img:
         return redirect(url_for("index"))
     else:
-        db.add_post(title, detail, img.filename)
+        db.add_post(title, detail, img.filename, link)
 
     return redirect(url_for("index"))
 
@@ -48,6 +49,12 @@ def add_post():
 def view(id):
     post = db.get_one_post(id)
     return render_template("view.html", post=post)
+
+
+@app.route("/view/<int:id>/delete", methods=['POST'])
+def delete(id):
+    db.delete(id)
+    return redirect(url_for("index"))
 
 
 if __name__ == '__main__':

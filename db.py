@@ -44,12 +44,20 @@ def get_one_post(id):
             return post
 
 
-def add_post(title, detail, img):
+def add_post(title, detail, img, link):
     with get_connection() as conn:
         with conn.cursor() as cur:
             # postsテーブルに挿入するSQL 値は後から
-            sql = "INSERT INTO posts(title,detail,image) VALUES (%(title)s, %(detail)s, %(img)s);"
-            params = {'title': title, 'detail': detail, 'img': img}
+            sql = "INSERT INTO posts(title,detail,image,link) VALUES (%(title)s, %(detail)s, %(img)s, %(link)s);"
+            params = {'title': title, 'detail': detail, 'img': img, 'link': link}
+            cur.execute(sql, params)
+
+
+def delete(id):
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            sql = "DELETE FROM posts WHERE id=%(id)s;"
+            params = {'id': id}
             cur.execute(sql, params)
 
 

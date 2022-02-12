@@ -66,7 +66,7 @@
         </div>
     </div>
 </section>
-<form>
+<div>
     <div class="w-50 container">
         <!-- 1行 -->
         <div class="form-group row">
@@ -84,16 +84,26 @@
             </div>
         </div>
 
+        <div class="form-group row">
+            <label class="col-2 col-form-label">URLリンク</label>
+            <div class="col-10" style="padding-top: 7px; padding-bottom: 7px">
+                <a href="{{ post[4] }}" target="_blank">{{ post[4] }}</a>
+            </div>
+        </div>
+
         <!-- 1行 -->
-        <div class="form-group pb-3 row">
+        <div class="form-group py-3 row">
             <div class="offset-2 col-10">
-                <!--                <button type="submit" class="btn btn-primary">登録</button>-->
                 <button type="submit" class="btn btn-primary"><a href="{{ url_for('index') }}"
                                                                  style="color:white">戻る</a></button>
+                <form action="{{ url_for('delete', id=post[0]) }}" method="post" id="delete"
+                      style="display:inline"></form>
+                <input type="submit" form="delete" class="btn btn-danger offset-1" value="削除"
+                       style="color:white">
             </div>
         </div>
     </div>
-</form>
+</div>
 <!-- Footer-->
 <footer class="py-5 bg-primary">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; </p></div>
