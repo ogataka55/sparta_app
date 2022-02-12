@@ -48,19 +48,19 @@
             <div class="w-50 mb-5">
                 <div class="card">
                     <!-- image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..."/>
+                    <img class="card-img-top" src="/static/image/{{ post[3] }}" alt="{{ post[1] }}"/>
                     <!-- details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder"></h5>
-                        </div>
-                    </div>
-                    <!-- actions-->
-                    <div class="card-footer p-3 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/view">View options</a>
-                        </div>
-                    </div>
+                    <!--                    <div class="card-body p-4">-->
+                    <!--                        <div class="text-center">-->
+                    <!--                            &lt;!&ndash; Product name&ndash;&gt;-->
+                    <!--                            <h5 class="fw-bolder"></h5>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    &lt;!&ndash; actions&ndash;&gt;-->
+                    <!--                    <div class="card-footer p-3 pt-0 border-top-0 bg-transparent">-->
+                    <!--                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/view">View options</a>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
                 </div>
             </div>
         </div>
@@ -71,26 +71,25 @@
         <!-- 1行 -->
         <div class="form-group row">
             <label class="col-2 col-form-label">タイトル</label>
-            <div class="col-10">
-                <input type="text" class="form-control" name="lastname">
+            <div class="col-10" style="padding-top: 7px; padding-bottom: 7px">
+                {{ post[1] }}
             </div>
         </div>
 
         <!-- 1行 -->
         <div class="form-group row">
-            <label class="col-2 col-form-label">名</label>
-            <div class="col-10">
-                <input type="text" class="form-control" name="firstname">
+            <label class="col-2 col-form-label">詳細</label>
+            <div class="col-10" style="padding-top: 7px; padding-bottom: 7px">
+                {{ post[2] }}
             </div>
         </div>
 
         <!-- 1行 -->
         <div class="form-group pb-3 row">
             <div class="offset-2 col-10">
-                <button type="submit" class="btn btn-primary">登録</button>
+                <!--                <button type="submit" class="btn btn-primary">登録</button>-->
                 <button type="submit" class="btn btn-primary"><a href="{{ url_for('index') }}"
                                                                  style="color:white">戻る</a></button>
-                </a>
             </div>
         </div>
     </div>

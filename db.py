@@ -34,12 +34,22 @@ def get_all_posts():
     return posts
 
 
-def add_post(title, detail):
+def get_one_post(id):
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            sql = "SELECT * FROM posts WHERE id=%(id)s;"
+            params = {'id': id}
+            cur.execute(sql, params)
+            post = cur.fetchone()
+            return post
+
+
+def add_post(title, detail, img):
     with get_connection() as conn:
         with conn.cursor() as cur:
             # postsテーブルに挿入するSQL 値は後から
-            sql = "INSERT INTO posts(title,detail) VALUES (%(title)s, %(detail)s);"
-            params = {'title': title, 'detail': detail}
+            sql = "INSERT INTO posts(title,detail,image) VALUES (%(title)s, %(detail)s, %(img)s);"
+            params = {'title': title, 'detail': detail, 'img': img}
             cur.execute(sql, params)
 
 
