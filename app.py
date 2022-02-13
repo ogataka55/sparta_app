@@ -65,14 +65,14 @@ def edit(id):
     n_link = request.form['n_link']
 
     if n_img and allowed_file(n_img.filename):
-        filename = n_img.filename
+        n_filename = n_img.filename
         # ファイルの保存
-        n_img.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        n_img.save(os.path.join(app.config['UPLOAD_FOLDER'], n_filename))
 
     if not n_title or not n_detail or not n_img:
-        return redirect(url_for("view", id=id))
+        return redirect(url_for("view_edit", id=id))
     else:
-        db.edit_post(id, n_title, n_detail, n_img, n_link)
+        db.edit_post(id, n_title, n_detail, n_img.filename, n_link)
 
     return redirect(url_for("view", id=id))
 

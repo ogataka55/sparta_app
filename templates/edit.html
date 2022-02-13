@@ -82,8 +82,9 @@
                 <nobr>画像&emsp;※必須</nobr>
             </label>
             <div class="col-9 offset-1">
-                <input type="file" name="n_image" accept="image/png, image/jeg, image/jpeg" value="{{ post[3] }}"
+                <input type="file" name="n_image" accept="image/png, image/jeg, image/jpeg"
                        style="padding-top: 7px; padding-bottom: 7px">
+                <img class="img-top-min col-3" src="/static/image/{{ post[3] }}" alt="{{ post[1] }}"/>
             </div>
         </div>
 
